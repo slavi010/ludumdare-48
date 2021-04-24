@@ -1,18 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://object/FlowerPot/FlowerPot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/Game.gd" type="Script" id=4]
+[ext_resource path="res://image/maison.jpg" type="Texture" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="Maison" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
 [node name="Camera" parent="." instance=ExtResource( 3 )]
 
 [node name="FlowerPot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 84.2685, -65.4219 )
+position = Vector2( 387.524, 58.7309 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -186.769, 0.994781 )
-position2 = Vector2( 100, 0 )
+position = Vector2( -250, 150 )
+positionInit = Vector2( -250, 150 )
+positionFleur = Vector2( 280, 140 )
+positionPorte = Vector2( -400, 140 )

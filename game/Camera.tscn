@@ -11,4 +11,8 @@ current = true
 
 [node name="ScreenShake" parent="Camera2D" instance=ExtResource( 2 )]
 
+[node name="QteLayer" type="CanvasLayer" parent="Camera2D"]
+offset = Vector2( 512, 300 )
+transform = Transform2D( 1, 0, 0, 1, 512, 300 )
+
 [node name="Tween" type="Tween" parent="."]

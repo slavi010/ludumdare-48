@@ -1,8 +1,10 @@
 extends Node2D
 
-# Called when the node enters the scene tree for the first time.
+var initPosition: Vector2
+var initRotation: float
 func _ready():
-	pass # Replace with function body.
+	initPosition = self.position
+	initRotation = self.rotation
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,10 +30,26 @@ func fall(RelativeDestinationTranslation: Vector2, RelativeDestinationRotation):
 		"rotation",
 		self.rotation,
 		self.rotation + RelativeDestinationRotation,
-		3,
+		7,
 		Tween.TRANS_QUINT,
 		Tween.EASE_IN_OUT,
-		1.5
+		1
+	)
+	# tombe
+	$Tween.interpolate_property( # translation
+		self,
+		"position",
+		self.position + RelativeDestinationTranslation,
+		self.position + Vector2(0, 100) + RelativeDestinationTranslation,
+		5,
+		Tween.TRANS_SINE,
+		Tween.EASE_IN_OUT,
+		2.5
 	)
 	$Tween.start()
-	
+
+
+func reset():
+	$Tween.stop_all()
+	self.position = initPosition
+	self.rotation = initRotation

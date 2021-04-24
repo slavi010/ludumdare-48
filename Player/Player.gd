@@ -1,7 +1,8 @@
 extends Node2D
 
-export var position1 : Vector2
-export var position2 : Vector2
+export var positionInit : Vector2
+export var positionFleur : Vector2
+export var positionPorte : Vector2
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -11,7 +12,7 @@ export var position2 : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	move(position2, 1, 2)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,3 +34,6 @@ func move(destinationTranslation: Vector2, time: float, delay: float):
 	)
 	$Tween.start()
 	
+func setPosition(newPosition: Vector2):
+	$Tween.stop(self, "position")
+	self.position = newPosition
