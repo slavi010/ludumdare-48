@@ -3,6 +3,10 @@ extends Node2D
 export var positionInit : Vector2
 export var positionFleur : Vector2
 export var positionPorte : Vector2
+export var positionCave : Vector2
+
+var ANIMATION_WALK = 0
+var ANIMATION_RUN = 1
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -33,7 +37,16 @@ func move(destinationTranslation: Vector2, time: float, delay: float):
 		delay
 	)
 	$Tween.start()
+
 	
 func setPosition(newPosition: Vector2):
 	$Tween.stop(self, "position")
 	self.position = newPosition
+
+func flipH(status: bool):
+	$AnimatedSprite.set_flip_h(status)
+
+func anim(typeAnimation: int):
+	match typeAnimation:
+		ANIMATION_WALK: $AnimatedSprite.animation = "walk"
+		ANIMATION_RUN: $AnimatedSprite.animation = "run"

@@ -31,7 +31,6 @@ func _new_shake():
 
 	$ShakeTween.interpolate_property(camera, "position", camera.position, rand, $Frequency.wait_time, TRANS, EASE)
 	$ShakeTween.start()
-	print("shake start")
 
 func _reset():
 	$ShakeTween.interpolate_property(camera, "position", camera.position, initPos, $Frequency.wait_time, TRANS, EASE)
