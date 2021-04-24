@@ -42,4 +42,4 @@ func zoomInAndMove(destinationTranslation: Vector2, destinationZoom: Vector2, ti
 	zoomIn(destinationZoom, time, delay)
 
 func small_shake() -> void:
-	$Camera2D/ScreenShake.start(1, 50, 4, 0)
+	$Camera2D/ScreenShake.start(1.3, 50, 15, 0)

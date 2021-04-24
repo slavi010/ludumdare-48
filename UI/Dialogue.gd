@@ -5,13 +5,16 @@ signal end_dialogue
 var texts : Array
 var idx = 0
 
+var chowed = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func showDialogue(texts: Array, delay: float):
-	yield(get_tree().create_timer(delay), "timeout")
+	yield(get_tree().create_timer(delay + 0.1), "timeout")
 	self.texts = texts
+	chowed = true
 	showNext()
 	
 func showNext():
@@ -26,6 +29,6 @@ func showNext():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("ui_up") and chowed:
 		showNext()
 	

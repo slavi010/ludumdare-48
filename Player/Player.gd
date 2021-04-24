@@ -7,6 +7,8 @@ export var positionCave : Vector2
 
 var ANIMATION_WALK = 0
 var ANIMATION_RUN = 1
+var ANIMATION_ANGRY = 2
+var ANIMATION_HAPPY = 3
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -50,3 +52,5 @@ func anim(typeAnimation: int):
 	match typeAnimation:
 		ANIMATION_WALK: $AnimatedSprite.animation = "walk"
 		ANIMATION_RUN: $AnimatedSprite.animation = "run"
+		ANIMATION_ANGRY: $AnimatedSprite.animation = "angry"
+		ANIMATION_HAPPY: $AnimatedSprite.animation = "happy"
