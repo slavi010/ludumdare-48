@@ -20,10 +20,10 @@ script = ExtResource( 2 )
 [node name="Box" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.317
-margin_left = 74.663
-margin_top = 62.677
-margin_right = -65.34
-margin_bottom = 15.477
+margin_left = 72.663
+margin_top = 14.677
+margin_right = -67.34
+margin_bottom = -32.523
 custom_constants/margin_right = 0
 __meta__ = {
 "_edit_use_anchors_": false

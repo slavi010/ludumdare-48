@@ -7,6 +7,7 @@ export var positionCave : Vector2
 export var positionFlexTape : Vector2
 export var positionShelf : Vector2
 export var positionMeal : Vector2
+export var positionPuit : Vector2
 
 var ANIMATION_WALK = 0
 var ANIMATION_RUN = 1
@@ -14,6 +15,10 @@ var ANIMATION_ANGRY = 2
 var ANIMATION_HAPPY = 3
 var ANIMATION_MEAL = 4
 var ANIMATION_FIXETAPE = 5
+var ANIMATION_RUN_FORK = 6
+var ANIMATION_ANGRY_FORK = 7
+var ANIMATION_THROW_1 = 8
+var ANIMATION_THROW_2 = 9
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -61,3 +66,7 @@ func anim(typeAnimation: int):
 		ANIMATION_HAPPY: $AnimatedSprite.animation = "happy"
 		ANIMATION_MEAL: $AnimatedSprite.animation = "meal"
 		ANIMATION_FIXETAPE: $AnimatedSprite.animation = "fixetape"
+		ANIMATION_RUN_FORK: $AnimatedSprite.animation = "run_fork"
+		ANIMATION_ANGRY_FORK: $AnimatedSprite.animation = "angry_fork"
+		ANIMATION_THROW_1: $AnimatedSprite.animation = "throw1"
+		ANIMATION_THROW_2: $AnimatedSprite.animation = "throw2"
