@@ -77,8 +77,10 @@ func next0():
 	showDialogue([
 		["~~~", "In the tranquil valley of gymnopedia..."],
 	], 1, 0)
+
 func next0_1():
 	$Camera.small_shake()
+	
 	showDialogue([
 		["~~~", "In the less tranquil valley of gymnopedia..."],
 		["You", "What the.... Why is my house so giggly all of a sudden ?"],

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tremblement moyen.ogg-ef09007e1ba35203efc55ed34f210af5.oggstr"
+
+[deps]
+
+source_file="res://sounds/tremblement moyen.ogg"
+dest_files=[ "res://.import/tremblement moyen.ogg-ef09007e1ba35203efc55ed34f210af5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

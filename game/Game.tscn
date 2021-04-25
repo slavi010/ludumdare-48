@@ -29,14 +29,9 @@ animations = [ {
 "name": "dehors",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "dream3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "dream1",
+"name": "etoile",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -49,9 +44,14 @@ animations = [ {
 "name": "dehors2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "etoile",
+"name": "dream1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "dream3",
 "speed": 5.0
 } ]
 

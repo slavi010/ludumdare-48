@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tremblement faible2s.ogg-41b3a9eeb79edb2081010d0428f8f7af.oggstr"
+
+[deps]
+
+source_file="res://sounds/tremblement faible2s.ogg"
+dest_files=[ "res://.import/tremblement faible2s.ogg-41b3a9eeb79edb2081010d0428f8f7af.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -7,6 +7,7 @@ const CHAR_READ_RATE = 0.10
 onready var textbox_container = $Box
 onready var Name = $Box/MarginContainer/VBoxContainer/Name
 onready var label = $Box/MarginContainer/VBoxContainer/Text
+var player = null
 
 enum State {
 	READY,
@@ -34,6 +35,9 @@ func _process(delta):
 		State.FINISHED:
 			if Input.is_action_just_pressed("ui_up"):
 				change_state(State.READY)
+				if player != null:
+					player.stop()
+					self.remove_child(player)
 				if text_queue.empty():
 					emit_signal("finished")
 					hide_textbox()
@@ -54,6 +58,10 @@ func display_text():
 	var next_text = text_queue.pop_front()
 	Name.text = next_text[0]
 	label.text = next_text[1]
+	player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://sounds/"+next_text[2])
+	player.play()
 	label.percent_visible = 0.0
 	change_state(State.READING)
 	show_textbox()
