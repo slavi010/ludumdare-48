@@ -4,6 +4,7 @@ export var positionInit : Vector2
 export var positionFleur : Vector2
 export var positionPorte : Vector2
 export var positionCave : Vector2
+export var positionFlexTape : Vector2
 
 var ANIMATION_WALK = 0
 var ANIMATION_RUN = 1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://image/player_balade.png" type="Texture" id=2]
 [ext_resource path="res://image/player_cours.png" type="Texture" id=3]
 [ext_resource path="res://image/player_pas_content.png" type="Texture" id=4]
+[ext_resource path="res://image/content.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -82,7 +83,7 @@ animations = [ {
 "name": "angry",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "happy",
 "speed": 5.0

@@ -15,10 +15,21 @@ func _on_end_dialogue():
 	match etape:
 		0.0: next0_1()
 		0.1: next1()
+		1.0: next0()
 		2.0: next3()
 		3.0: next4()
 		5.0: next6()
+		6.0: next5() # from failure
 		7.0: next8()
+		8.0: next5() # from failure
+		9.0: next10()
+		10.0: next11()
+		11.0: next12()
+		12.0: next13()
+		13.0: next11() # from failure
+		14.0: next15() 
+		15.0: next16() 
+		17.0: next18() 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +46,11 @@ func showDialogue(texts: Array, delay: float, etape: float):
 # le mec est à sa table -> trenblement + "What the fuck" 
 func next0():
 	$Maison.animation = "maison"
-	$Maison/Trape.visible = true
+	$Maison/Trape.show()
+	$FlowerPot.reset()
+	$FlowerPot/AnimatedSprite.show()
+	$Player.anim($Player.ANIMATION_HAPPY)
+	$Player.setPosition($Player.positionInit)
 	# print dialogue delay 2sec	
 	showDialogue([
 		["~~~", "In the tranquil valley of gymnopedia..."],
@@ -72,9 +87,9 @@ func on_qte_end_1(success):
 	else: faild1()
 
 func faild1():
-	# NOOOO
-	# restart
-	pass
+	showDialogue([
+		["~~~", "GAME OVER"],
+	], 1, 1)
 
 # affiche dialogue "I got you"
 func next2():
@@ -109,7 +124,7 @@ func next3():
 		["You", "(I shall stop talking with this weirdo, this guy speaks nonsense.)"]
 
 	], 3, 3)
-	yield(get_tree().create_timer(5), "timeout")
+	yield(get_tree().create_timer(4), "timeout")
 	$Player.anim($Player.ANIMATION_ANGRY)
 
 
@@ -126,7 +141,13 @@ func next5():
 	$Maison/Trape.visible = true
 	$Player.flipH(false)
 	
+	$Player.anim($Player.ANIMATION_HAPPY)
 	$Player.setPosition($Player.positionInit)
+	$Player.show()
+	$FlowerPot.show()
+	$Camera.reset()
+	$Maison/Trape/AnimatedSprite.animation = "close"
+	
 	showDialogue([
 		["You", "What a strange dream…"],
 		["You", "Nevermind, with all the mess Mr.DrillGuy is making, I shall find a solution to protect my flower."],
@@ -135,6 +156,7 @@ func next5():
 
 # go cave
 func next6():
+	$Camera.zoomInAndMove(Vector2(160, 170), Vector2(0.45, 0.45), 4, 0)
 	$Player.anim($Player.ANIMATION_WALK)
 	$Player.move($Player.positionCave, 2, 0)
 	yield(get_tree().create_timer(2), "timeout")	
@@ -153,19 +175,25 @@ func on_qte_end_6(success):
 	else: fail6()
 
 func fail6():
-	pass
+	# black screen
+	showDialogue([
+		["~~~", "GAME OVER"],
+	], 1, 6)
 
 
 func next7():
 	# open trap
 	$Player.hide()
+	$FlowerPot.hide()
 	$Maison/Trape/AnimatedSprite.animation = "open"
 	$Camera/Camera2D/ScreenShake.start(1, 2, 60, 2)
 	showDialogue([
 		["You", "Woah it’s pretty dark in here !"],
+		["You", "Okay let’s create the perfect fall proof flower pot"],
 	], 1, 7)
 	
 
+# dans la cave
 var next8NbQteLeft = 4
 var planche
 func next8():
@@ -195,8 +223,134 @@ func on_qte_end_8(success):
 	else: fail6()
 	
 func fail8():
-	pass
+	# black screen
+	showDialogue([
+		["~~~", "GAME OVER"],
+	], 1, 8)
 	
 func next9():
-	pass
+	$Camera.reset()
+	$Player.show()
+	$Player.anim($Player.ANIMATION_HAPPY)
+	$FlowerPot.show()
+	# changer skin fleur
+	showDialogue([
+		["You", "Phew, that was quite the work ! Well yeah, I could have turned the light on, but it would have been less fun !"],
+		["You", "And here is the protectaflower 2000 ! With this, no more earthquake hazards !"],
+	], 1, 9)
 	
+# its work
+func next10():
+	yield(get_tree().create_timer(1), "timeout")
+	$Camera.small_shake()
+	showDialogue([
+		["You", "It’s working ! "],
+		["You", "Rose are red, Violets are blue and nothing bad will happen to me and you !"],
+	], 1, 10)
+
+# crack
+func next11():
+	$Camera.reset()
+	$Player.setPosition($Player.positionCave)
+	$Player.anim($Player.ANIMATION_HAPPY)
+	# TODO crack sond
+	yield(get_tree().create_timer(1), "timeout")
+	$Player.anim($Player.ANIMATION_ANGRY)
+	print("crack")
+	showDialogue([
+		["You", "Cracks ? What do you mean cracks !?"],
+	], 2, 11)
+
+# crack again
+func next12():
+	yield(get_tree().create_timer(1), "timeout")
+	# TODO crack sond again
+	print("crack")
+	# TODO animation fish crack
+	showDialogue([
+		["You", "Maurice the fish is in danger ! I have to help it ! That clearly is a flex tape situation."],
+	], 2, 12)
+
+func next13():
+	$Player.move($Player.positionFlexTape, 2, 0)
+	$Player.anim($Player.ANIMATION_RUN)
+	$Camera.zoomInAndMove($Player.positionFlexTape, Vector2(0.45, 0.45), 2.5, 0)
+	$Player.flipH(true)
+	q = Qte.instance()
+	$Camera/Camera2D/QteLayer.add_child(q)
+	q.connect("end", self, "on_qte_end_13")	
+	q.start("ui_up", 2, 0.2)
+	$Camera/Camera2D/ScreenShake.start(1.2, 8, 8, 1)
+	
+func on_qte_end_13(success):
+	print(success)
+	$Camera/Camera2D/ScreenShake._reset()
+	$Camera/Camera2D/QteLayer.remove_child(q)
+	
+	$FlowerPot.reset()
+	if success: next14()
+	else: fail13()
+
+func fail13():
+	showDialogue([
+		["~~~", "GAME OVER"],
+	], 1, 13)
+
+func next14():
+	$Camera.reset()
+	# TODO animation FLEXTAPE
+	yield(get_tree().create_timer(1.5), "timeout")
+	# TODO animation fish flextaped
+	$Player.anim($Player.ANIMATION_HAPPY)
+	showDialogue([
+		["You", "Good old flex tape… Can fix any situations… I guess ? "],
+		["You", "No it cannot fix my neighbor, but I can fix him."],
+	], 1, 14)
+
+func next15():
+	$Player.flipH(true) # tourne vers la gauche
+	$Player.anim($Player.ANIMATION_WALK)	
+	$Player.move($Player.positionPorte, 2, 0.1)
+	yield(get_tree().create_timer(2.1), "timeout")
+	# dehors
+	$Maison.animation = "dehors"
+	$FlowerPot.visible = false
+	$Maison/Trape.visible = false
+	$Player.setPosition($Player.positionFleur)
+	$Player.move($Player.positionInit, 3, 0.3)
+	showDialogue([
+		["You", "W-W--What ?? Another well already ? What the hell are you doing ! Can’t you see that you are creating trouble in the valley ?"],
+		["Neighbour", "Ahah ! This earthquakes were already tharr, or not tharr exactly but in anothah plane of existence, it’s okay ! How in dah world making pretty tiny holes deep down could disrupt the geological balance ?"],
+		["You", "Wow you speak so smart. I am convinced. You have used great wisdom in your speech. I will go straight back home."],
+	], 3, 15)
+	yield(get_tree().create_timer(3.3), "timeout")
+	$Player.anim($Player.ANIMATION_ANGRY)
+	
+# nuit 2
+func next16():
+	$Maison.animation = "maison"
+	next17()
+	
+func next17():
+	$Maison.animation = "maison"
+	$FlowerPot.visible = true
+	$Maison/Trape.visible = true
+	$Player.flipH(false)
+	
+	# TODO Animation player assi	
+	$Player.anim($Player.ANIMATION_HAPPY)
+	$Player.setPosition($Player.positionInit)
+	$Player.show()
+	$FlowerPot.show()
+	$Camera.reset()
+	$Maison/Trape/AnimatedSprite.animation = "close"
+	showDialogue([
+		["You", "This weird dream again… This time, it was much more understandable… Yum"],
+	], 1, 17)
+
+func next18():
+	$Camera.small_shake()
+	showDialogue([
+		["You", "Wha… Again ! Oh no the shelf !"],
+	], 3, 18)
+
