@@ -73,8 +73,19 @@ func _on_end_dialogue():
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	randomize()
-	menu()
+#	menu()
+	next26()
+
+# max 30 sec
+func sond(path: String):
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://sounds/"+path)
+	player.play()
+	yield(get_tree().create_timer(30), "timeout")
+	self.remove_child(player)
 	
+
 func fail():
 	$Maison.animation = "etoile"
 	$Maison/In.hide()
@@ -90,6 +101,7 @@ func showDialogue(texts: Array, delay: float, etape: float):
 
 # le mec est à sa table -> trenblement + "What the fuck" 
 func next0():
+	$Earth.hide()
 	$Maison.animation = "maison"
 	$Maison/In.show()
 	$Maison/Out.hide()
@@ -105,6 +117,7 @@ func next0():
 	], 1, 0)
 
 func next0_1():
+	sond("tremblement faible2s.ogg")
 	$Camera.small_shake()
 	
 	showDialogue([
@@ -430,7 +443,7 @@ func next17():
 func next18():
 	$Camera.small_shake()
 	showDialogue([
-		["You", "Wha… Again ! Oh no the shelf !"],
+		["You", "Wha... Again ! Oh no the shelf !"],
 	], 2.5, 18)
 	next19NbQteLeft = 4
 
@@ -644,4 +657,30 @@ func on_qte_end_27(success):
 	self.add_child(tnt)
 	tnt.position = $Player.positionFleur + Vector2(-50, -70)
 	tnt.move($Player.positionPuit, PI*-15)
+	# boom
+	yield(get_tree().create_timer(2), "timeout")
+	$Maison/In.hide()
+	$Maison/Out.hide()
+	$Player.hide()
+	$Maison.animation = "boom"
+	tnt.hide()
+	self.remove_child(tnt)
+	yield(get_tree().create_timer(1), "timeout")
+	$Transition.transition()
+	yield(get_tree().create_timer(1), "timeout")
+	$Maison.animation = "etoile"
+	# afficher terre
+	$Earth.show()
+	$Earth.animation = "nuke"
+	yield(get_tree().create_timer(2), "timeout")
+	$Earth.animation = "crack"
+	yield(get_tree().create_timer(1.5), "timeout")
+	$Earth.animation = "split"
+	yield(get_tree().create_timer(2), "timeout")
+	
+
+
+
+
+
 

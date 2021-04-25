@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tremblement_faible.ogg-bea15e1e483a43d8f62b9ea86b66ccd1.oggstr"
+
+[deps]
+
+source_file="res://audio/tremblement_faible.ogg"
+dest_files=[ "res://.import/tremblement_faible.ogg-bea15e1e483a43d8f62b9ea86b66ccd1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal finished
 
-const CHAR_READ_RATE = 0.10
+const CHAR_READ_RATE = 0.25
 
 onready var textbox_container = $Box
 onready var Name = $Box/MarginContainer/VBoxContainer/Name
@@ -58,10 +58,13 @@ func display_text():
 	var next_text = text_queue.pop_front()
 	Name.text = next_text[0]
 	label.text = next_text[1]
+	
 	player = AudioStreamPlayer.new()
 	self.add_child(player)
-	player.stream = load("res://sounds/"+next_text[2])
+	if next_text.size() == 3:
+		player.stream = load("res://sounds/"+next_text[2])
 	player.play()
+	
 	label.percent_visible = 0.0
 	change_state(State.READING)
 	show_textbox()
