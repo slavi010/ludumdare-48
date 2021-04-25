@@ -15,20 +15,10 @@ func showDialogue(texts: Array, delay: float):
 	yield(get_tree().create_timer(delay + 0.1), "timeout")
 	self.texts = texts
 	chowed = true
-	showNext()
+	for text in texts:
+		$TextBox.queue_text(text)
 	
-func showNext():
-	if texts.size() > idx:
-		print(texts[idx])
-		idx += 1
-	elif idx != 9999:
-		emit_signal("end_dialogue")
-		idx = 9999
-	else:
-		pass
 
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_up") and chowed:
-		showNext()
-	
+func _on_TextBox_finished():
+	emit_signal("end_dialogue")

@@ -34,7 +34,7 @@ func _on_end_dialogue():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	next0()
+	next6()
 
 func showDialogue(texts: Array, delay: float, etape: float):
 	self.etape = etape	
@@ -54,10 +54,9 @@ func next0():
 	# print dialogue delay 2sec	
 	showDialogue([
 		["~~~", "In the tranquil valley of gymnopedia..."],
-	], 0, 0)
+	], 1, 0)
 func next0_1():
 	$Camera.small_shake()
-	$Player.anim($Player.ANIMATION_ANGRY)
 	showDialogue([
 		["~~~", "In the less tranquil valley of gymnopedia…"],
 		["You", "What the…. Why is my house so giggly all of a sudden ?"],
@@ -97,7 +96,7 @@ func next2():
 	showDialogue([
 		["You", "I got you ! No need to tremble anymore my pretty flower !"],
 		["You", "What’s going on ? "]
-	], 2, 2)
+	], 1, 2)
 	$Player.setPosition($Player.positionFleur)
 
 
@@ -156,7 +155,7 @@ func next5():
 
 # go cave
 func next6():
-	$Camera.zoomInAndMove(Vector2(160, 170), Vector2(0.45, 0.45), 4, 0)
+	$Camera.zoomInAndMove(Vector2(160, 160), Vector2(0.45, 0.45), 4, 0)
 	$Player.anim($Player.ANIMATION_WALK)
 	$Player.move($Player.positionCave, 2, 0)
 	yield(get_tree().create_timer(2), "timeout")	
