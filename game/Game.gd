@@ -6,10 +6,36 @@ var Dialogue = load("res://UI/Dialogue.tscn")
 var Planche = load("res://object/Planche/Planche.tscn")
 var Goutte = load("res://object/Goutte/Goutte.tscn")
 var TNT = load("res://object/TNT/TNT.tscn")
+var ButtonUp = load("res://UI/ButtonUp.tscn")
+
 var q
 
 var etape: float = 0
 var dialogue = null
+var buttonUp
+
+
+func menu():
+	$Maison/In.hide()
+	$Maison/Out.hide()
+	$Player.hide()
+	
+	$Maison.animation = "menu"
+	
+	buttonUp = ButtonUp.instance()
+	self.add_child(buttonUp)
+	buttonUp.position = Vector2(0, 200)
+	buttonUp.connect("menu_end", self, "_on_ButtonUp_menu_end")
+	
+	
+
+func _on_ButtonUp_menu_end():
+	buttonUp.hide()
+	self.remove_child(buttonUp)
+	buttonUp = null
+	next0()
+	
+
 
 func _on_end_dialogue():
 	$Camera/Camera2D/QteLayer.remove_child(dialogue)
@@ -45,9 +71,9 @@ func _on_end_dialogue():
 		26.0: next27()
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():	
 	randomize()
-	next0()
+	menu()
 	
 func fail():
 	$Maison.animation = "etoile"
