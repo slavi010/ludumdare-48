@@ -13,7 +13,7 @@ func fall(destinationTranslation: Vector2):
 		"position",
 		self.position,
 		destinationTranslation,
-		4,
+		2,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)

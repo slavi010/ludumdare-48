@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livre3.ogg-eab042f3b826126721f7d1c45a6c5343.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/livre3.ogg"
+dest_files=[ "res://.import/livre3.ogg-eab042f3b826126721f7d1c45a6c5343.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

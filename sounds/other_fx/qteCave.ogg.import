@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/qteCave.ogg-00fdd8af22b57fb92ac16adb78b0a7c1.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/qteCave.ogg"
+dest_files=[ "res://.import/qteCave.ogg-00fdd8af22b57fb92ac16adb78b0a7c1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

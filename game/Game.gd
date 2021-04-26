@@ -74,19 +74,22 @@ func _on_end_dialogue():
 func _ready():	
 	randomize()
 	menu()
-#	next26()
+#	next27()
 
 # max 30 sec
 func sond(path: String):
 	var player = AudioStreamPlayer.new()
 	self.add_child(player)
 	player.stream = load("res://sounds/"+path)
+	(player.stream as AudioStreamOGGVorbis).set_loop(false)
+	player.volume_db = 0.3
 	player.play()
 	yield(get_tree().create_timer(30), "timeout")
 	self.remove_child(player)
 	
 
 func fail():
+	sond("other_fx/noooo3s.ogg")
 	$Maison.animation = "etoile"
 	$Maison/In.hide()
 	$Maison/Out.hide()
@@ -107,10 +110,12 @@ func next0():
 	$Maison/Out.hide()
 	$Maison/In/FlowerPot.reset()
 	$Maison.show()
+	$Player.flipH(false)
 	$Player.show()
 	$Player.anim($Player.ANIMATION_MEAL)
 	$Player.setPosition($Player.positionMeal)
 	$Maison/In/Fish/AnimatedSprite.animation = "normal"
+	$Maison/In/FlowerPot/AnimatedSprite.animation = "normal"
 	# print dialogue delay 2sec	
 	showDialogue([
 		["~~~", "In the tranquil valley of gymnopedia...","other_fx/narrateur1.ogg"],
@@ -149,6 +154,7 @@ func on_qte_end_1(success):
 
 func faild1():
 	fail()
+	sond("other_fx/craquefleur.ogg")
 	showDialogue([
 		["~~~", "GAME OVER"],
 	], 1, 1)
@@ -156,7 +162,9 @@ func faild1():
 
 # affiche dialogue "I got you"
 func next2():
+	
 	$Player.anim($Player.ANIMATION_ANGRY)
+	sond("other_fx/pose fleur.ogg")
 	showDialogue([
 		["You", "I got you ! No need to tremble anymore my pretty flower !","main/main3.ogg"],
 		["You", "What’s going on ? ","main/main4.ogg"]
@@ -261,6 +269,7 @@ func next7():
 	$Player.hide()
 	$Maison/In/FlowerPot.hide()
 	$Maison/In/Trape/AnimatedSprite.animation = "open"
+	sond("other_fx/ouvertureTrappe.ogg")
 	$Camera/Camera2D/ScreenShake.start(1, 2, 60, 2)
 	showDialogue([
 		["You", "Woah it’s pretty dark in here !","main/main10.ogg"],
@@ -280,14 +289,16 @@ func next8():
 	$Camera/Camera2D/QteLayer.add_child(q)
 	$Camera/Camera2D/QteLayer.add_child(planche)
 	q.connect("end", self, "on_qte_end_8")	
-	q.start(null, 3, 0.2)
+	q.start(null, 3, 0)
 	$Camera/Camera2D/ScreenShake.start(1.2, 8, 10, 1)
+	if next8NbQteLeft == 4:
+		sond("other_fx/qteCave.ogg")
 
 func on_qte_end_8(success):
 	$Camera/Camera2D/ScreenShake._reset()
 	$Camera/Camera2D/QteLayer.remove_child(q)
 	$Camera/Camera2D/QteLayer.remove_child(planche)
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	print("next8NbQteLeft ", next8NbQteLeft)
 	if success:
 		if next8NbQteLeft <= 1:
@@ -321,6 +332,7 @@ func next9():
 # its work
 func next10():
 	yield(get_tree().create_timer(1), "timeout")
+	sond("other_fx/tremblement faible2s.ogg")
 	$Camera.small_shake()
 	showDialogue([
 		["You", "It’s working ! ","main/main14.ogg"],
@@ -336,6 +348,7 @@ func next11():
 	$Camera.reset()
 	$Player.setPosition($Player.positionCave)
 	$Player.anim($Player.ANIMATION_HAPPY)
+	$Maison.animation = "maison"
 	sond("other_fx/crac aquariumx3.ogg")
 	yield(get_tree().create_timer(1), "timeout")
 	$Player.anim($Player.ANIMATION_ANGRY)
@@ -348,7 +361,7 @@ func next11():
 func next12():
 	yield(get_tree().create_timer(1), "timeout")
 	sond("other_fx/crac aquariumx3.ogg")
-	dynplayer.play()
+#	dynplayer.play()
 	print("crack")
 	$Maison/In/Fish/AnimatedSprite.animation = "fissure"
 	showDialogue([
@@ -384,6 +397,7 @@ func fail13():
 func next14():
 	$Camera.reset()
 	$Player.anim($Player.ANIMATION_FIXETAPE)
+	sond("other_fx/flextap.ogg")
 	yield(get_tree().create_timer(0.7), "timeout")
 	$Maison/In/Fish/AnimatedSprite.animation = "flextape"
 	$Player.anim($Player.ANIMATION_HAPPY)
@@ -396,7 +410,9 @@ func next15():
 	$Player.flipH(true) # tourne vers la gauche
 	$Player.anim($Player.ANIMATION_WALK)	
 	$Player.move($Player.positionPorte, 2, 0.1)
-	yield(get_tree().create_timer(2.1), "timeout")
+	yield(get_tree().create_timer(1.1), "timeout")
+	$Transition.transition()
+	yield(get_tree().create_timer(1), "timeout")
 	# dehors
 	$Maison.animation = "dehors"
 	$Maison/In.hide()
@@ -405,7 +421,7 @@ func next15():
 	$Player.move($Player.positionInit, 3, 0.3)
 	showDialogue([
 		["You", "W-W--What ?? Another well already ? What the hell are you doing ! Can’t you see that you are creating trouble in the valley ?","main/main20.ogg"],
-		["Deeper", "Ahah ! This earthquakes were already tharr, or not tharr exactly but in anothah plane of existence, it’s okay !","deeper/deeper4.ogg"] 
+		["Deeper", "Ahah ! This earthquakes were already tharr, or not tharr exactly but in anothah plane of existence, it’s okay !","deeper/deeper4.ogg"], 
 		["Deeper", "How in dah world making pretty tiny holes deep down could disrupt the geological balance ?","deeper/deeper5.ogg"],
 		["You", "Wow you speak so smart. I am convinced. You have used great wisdom in your speech. I will go straight back home.","main/main21.ogg"],
 	], 3, 15)
@@ -443,6 +459,7 @@ func next17():
 	], 1, 17)
 
 func next18():
+	sond("other_fx/tremblement faible2s.ogg")
 	$Camera.small_shake()
 	showDialogue([
 		["You", "Wha... Again ! Oh no the shelf !","main/main23.ogg"],
@@ -455,10 +472,18 @@ func next19():
 	$Player.move($Player.positionShelf, 1, 0.1)
 	$Player.anim($Player.ANIMATION_RUN)
 	$Maison/In/Shelf.fallBook()
+	
+	#sond book
+	match next19NbQteLeft:
+		4: sond("other_fx/livre1.ogg")
+		3: sond("other_fx/livre2.ogg")
+		2: sond("other_fx/livre3.ogg")
+		1: sond("other_fx/livre4.ogg")
+	
 	q = Qte.instance()
 	$Camera/Camera2D/QteLayer.add_child(q)
 	q.connect("end", self, "on_qte_end_19")	
-	q.start(null, 1.5, 0.2)
+	q.start(null, 1, 0.2)
 	$Camera/Camera2D/ScreenShake.start(1.2, 8, 10, 1)
 	yield(get_tree().create_timer(1.1), "timeout")
 	$Player.anim($Player.ANIMATION_ANGRY)
@@ -488,6 +513,7 @@ func next20():
 	$Camera.reset()
 	$Maison/In/Shelf.reset()
 	$Player.anim($Player.ANIMATION_HAPPY)
+	sond("main/phew.ogg")
 	showDialogue([
 		["You", "Phew..."]
 	], 1, 20)
@@ -516,11 +542,12 @@ func next21():
 	], 1, 21)
 
 func next22():
+	sond("other_fx/tremblement moyen.ogg")
 	$Camera/Camera2D/ScreenShake.start(2, 8, 100, 2)
 	showDialogue([
-		["You", "I knew it ! You were the one provoking them all from the beginning !","main/main26.ogg"],
+		["You", "I knew it ! You were the one provoking them all from the beginning !","main/main27.ogg"],
 	], 3, 22)
-	next23NbQteLeft = 3
+	next23NbQteLeft = 6
 	next23SideQte = true
 
 var next23NbQteLeft
@@ -537,8 +564,16 @@ func next23():
 	else:
 		goutte.fall(Vector2($Player.positionFleur + Vector2(-150, 350)))
 	q.connect("end", self, "on_qte_end_23")	
-	q.start(null, 1.8, 0.2)
-	$Camera/Camera2D/ScreenShake.start(1.2, 8, 10, 1)
+	q.start(null, 0.6, 0.2)
+	#sond goutte
+	match next23NbQteLeft:
+		6: sond("other_fx/livre1.ogg")
+		5: sond("other_fx/livre2.ogg")
+		4: sond("other_fx/livre3.ogg")
+		3: sond("other_fx/livre4.ogg")
+		2: sond("other_fx/livre1.ogg")
+		1: sond("other_fx/livre2.ogg")
+	$Camera/Camera2D/ScreenShake.start(0.8, 8, 10, 1)
 	yield(get_tree().create_timer(1.1), "timeout")
 
 func on_qte_end_23(success):
@@ -548,10 +583,10 @@ func on_qte_end_23(success):
 		$Player.anim($Player.ANIMATION_RUN)
 		if (next23SideQte):
 			$Player.flipH(true)
-			$Player.move($Player.positionFleur + Vector2(-150, 0), 0.5, 0)
+			$Player.move($Player.positionFleur + Vector2(-150, 0), 0.3, 0)
 		else:
 			$Player.flipH(false)
-			$Player.move($Player.positionFleur, 0.5, 0)
+			$Player.move($Player.positionFleur, 0.3, 0)
 		next23SideQte = !next23SideQte
 		yield(get_tree().create_timer(0.5), "timeout")
 		$Player.anim($Player.ANIMATION_ANGRY)
@@ -571,7 +606,7 @@ func fail23():
 func next24():
 	$Player.anim($Player.ANIMATION_ANGRY)
 	showDialogue([
-		["You", "It was... Exhausting... I don’t feel so good... I was so close from dying… I should... go back to bed...","main/main27.ogg"],
+		["You", "It was... Exhausting... I don’t feel so good... I was so close from dying… I should... go back to bed...","main/main26.ogg"],
 		["Deeper", "Yaaar, have a good night little neighbah !","deeper/deeper8.ogg"],
 	], 1, 24)
 
@@ -585,23 +620,22 @@ func next25():
 	$Player.hide()
 	showDialogue([
 		["???", "Qwack !","qwak/qwak1.ogg"],
-		["You", "You again !","main/main28.ogg"],
+		["You", "You again !","main/main25.ogg"],
 		["You", "Oh, I can see clearly now. What are… A Dodo ! You are a Dodo !","main/main29.ogg"],
-		["???", "Qwack !","qwak/qwak2.ogg"],
-		["You", "Deepar is your name ? That is a strange name...","main/main30.ogg"],
-		["Deepar", "Qwack.","qwak/qwak3.ogg"],
-		["You", "Yeah it was mean sorry... But I don’t understand, why are you appearing in all my dreams ?","main/main31.ogg"],
-		["Deepar", "Qwack ?","qwak/qwak4.ogg"],
-		["You", "Yes i’m fine, I guess, i don’t understand your point here ?","main/main32.ogg"],
-		["Deepar", "Qwack !","qwak/qwak5.ogg"],
-		["You", "Deeper Industries are really frightening me yes, but what can I do ?","main/main33.ogg"],
-		["Deepar", "Qwack Qwack !","qwak/qwak6.ogg"],
-		["You", "This world will die someday... Why are you telling me this !","main/main34.ogg"],
-		["Deepar", "Qwack.","qwak/qwak7.ogg"],
-		["You", "If I cannot live properly, why everyone should...","main/main35.ogg"],
-		["Deepar", "QWACK !","qwak/qwak8.ogg"],
-		["You", "YES !"],
-		["You", "I will end my suffer here you are right ! Let’s grab my fork and stop my neighbour ! He, and everyone will pay to make us suffer ! Let’s end this world !","main/main36.ogg"],
+		["???", "Qwack !","qwak/qwak8.ogg"],
+		["You", "Deepar is your name ? That is a strange name...","main/main28.ogg"],
+		["Deepar", "Qwack.","qwak/qwak2.ogg"],
+		["You", "Yeah it was mean sorry... But I don’t understand, why are you appearing in all my dreams ?","main/main30.ogg"],
+		["Deepar", "Qwack ?","qwak/qwak3.ogg"],
+		["You", "Yes i’m fine, I guess, i don’t understand your point here ?","main/main31.ogg"],
+		["Deepar", "Qwack !","qwak/qwak4.ogg"],
+		["You", "Deeper Industries are really frightening me yes, but what can I do ?","main/main32.ogg"],
+		["Deepar", "Qwack Qwack !","qwak/qwak5.ogg"],
+		["You", "This world will die someday... Why are you telling me this !","main/main33.ogg"],
+		["Deepar", "Qwack.","qwak/qwak6.ogg"],
+		["You", "If I cannot live properly, why everyone should...","main/main22.ogg"],
+		["Deepar", "QWACK !","qwak/qwak7.ogg"],
+		["You", "YES ! I will end my suffer here you are right ! Let’s grab my fork and stop my neighbour ! He, and everyone will pay to make us suffer ! Let’s end this world !","main/main34.ogg"],
 	], 2, 25)
 
 func next26():
@@ -623,8 +657,10 @@ func next26():
 	yield(get_tree().create_timer(2), "timeout")
 	$Player.hide()
 	$Maison/In/Trape/AnimatedSprite.animation = "open"
+	sond("other_fx/ouvertureTrappe.ogg")
 	yield(get_tree().create_timer(1.5), "timeout")
 	$Maison/In/Trape/AnimatedSprite.animation = "close"
+	sond("other_fx/ouvertureTrappe.ogg")
 	$Player.show()
 	$Player.anim($Player.ANIMATION_RUN_FORK)
 	$Player.flipH(true)
@@ -665,6 +701,7 @@ func on_qte_end_27(success):
 	$Maison/Out.hide()
 	$Player.hide()
 	$Maison.animation = "boom"
+	sond("other_fx/tremblement moyen3s.ogg")
 	tnt.hide()
 	self.remove_child(tnt)
 	yield(get_tree().create_timer(1), "timeout")
@@ -676,14 +713,42 @@ func on_qte_end_27(success):
 	$Earth.animation = "nuke"
 	yield(get_tree().create_timer(2), "timeout")
 	$Earth.animation = "crack"
-	sond(other_fx/pop.ogg)
+	sond("other_fx/pop.ogg")
 	yield(get_tree().create_timer(1.5), "timeout")
 	$Earth.animation = "split"
-	yield(get_tree().create_timer(2), "timeout")
+	sond("dorime.ogg")
+	$FinDodo.show()
+	yield(get_tree().create_timer(6), "timeout")
+	
+	# crédit
+	buttonUp = ButtonUp.instance()
+	self.add_child(buttonUp)
+	buttonUp.position = Vector2(0, 200)
+	buttonUp.connect("menu_end", self, "credit")
+
+# THE END
+func credit():
+	sond("aaaaa.ogg")
+	$Earth.hide()
+	$FinDodo.hide()
+	$Maison.animation = "credit"
+	
+	buttonUp.hide()
+	self.remove_child(buttonUp)
+	buttonUp = null
 	
 
+	yield(get_tree().create_timer(4), "timeout")
+	buttonUp = ButtonUp.instance()
+	buttonUp.hide()
+	self.add_child(buttonUp)
+	buttonUp.position = Vector2(0, 200)
+	buttonUp.connect("menu_end", self, "restart")
 
-
-
+func restart():
+	buttonUp.hide()
+	self.remove_child(buttonUp)
+	buttonUp = null
+	menu()
 
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ouvertureTrappe.ogg-b8426f4718a98fa62a77f252d08ac879.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/ouvertureTrappe.ogg"
+dest_files=[ "res://.import/ouvertureTrappe.ogg-b8426f4718a98fa62a77f252d08ac879.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

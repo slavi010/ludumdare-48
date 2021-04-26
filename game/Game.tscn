@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://object/FlowerPot/FlowerPot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://image/boom.png" type="Texture" id=20]
 [ext_resource path="res://image/earth_4.png" type="Texture" id=21]
 [ext_resource path="res://image/earth_3.png" type="Texture" id=22]
+[ext_resource path="res://image/dodoA.png" type="Texture" id=23]
+[ext_resource path="res://image/credit.png" type="Texture" id=24]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -35,24 +37,24 @@ animations = [ {
 "name": "dream3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "maison",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "dream2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "dream1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "maison",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "etoile",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "dehors",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ) ],
@@ -65,9 +67,14 @@ animations = [ {
 "name": "boom",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "dehors",
+"name": "dream2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "credit",
 "speed": 5.0
 } ]
 
@@ -102,11 +109,19 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="Maison" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -1.12247 )
+position = Vector2( 0, -2.12247 )
 frames = SubResource( 1 )
 animation = "maison"
 
@@ -156,3 +171,8 @@ positionPuit = Vector2( -400, -50 )
 visible = false
 frames = SubResource( 3 )
 animation = "split"
+
+[node name="FinDodo" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -2.3399, -0.965332 )
+frames = SubResource( 4 )

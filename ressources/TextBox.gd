@@ -63,6 +63,9 @@ func display_text():
 	self.add_child(player)
 	if next_text.size() == 3:
 		player.stream = load("res://sounds/"+next_text[2])
+		(player.stream as AudioStreamOGGVorbis).set_loop(false)
+		player.volume_db = 0.3
+		
 	player.play()
 	
 	label.percent_visible = 0.0
@@ -83,3 +86,6 @@ func change_state(next_state):
 
 func _on_Tween_tween_completed(object, key):
 	change_state(State.FINISHED)
+	
+func _on_AudioPlayer_finished():
+	player.stop()
