@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crack aquariumx1.ogg-804efea2d199d1ecdef09939493c7f64.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/crack aquariumx1.ogg"
+dest_files=[ "res://.import/crack aquariumx1.ogg-804efea2d199d1ecdef09939493c7f64.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/craquefleur.ogg-988c2df4f1a77d3891049db9bc7dc910.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/craquefleur.ogg"
+dest_files=[ "res://.import/craquefleur.ogg-988c2df4f1a77d3891049db9bc7dc910.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

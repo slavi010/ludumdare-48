@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pose fleur.ogg-861eaac743285393575d4f567fc3c5d4.oggstr"
+
+[deps]
+
+source_file="res://sounds/other_fx/pose fleur.ogg"
+dest_files=[ "res://.import/pose fleur.ogg-861eaac743285393575d4f567fc3c5d4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

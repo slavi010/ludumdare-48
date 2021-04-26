@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/deeper6.ogg-8632dad3ab487b602827d04d3316aebf.oggstr"
+
+[deps]
+
+source_file="res://sounds/deeper/deeper6.ogg"
+dest_files=[ "res://.import/deeper6.ogg-8632dad3ab487b602827d04d3316aebf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

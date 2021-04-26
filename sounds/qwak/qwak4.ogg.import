@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/qwak4.ogg-399a3dcd3b1fd15e07a9325b5baee1b8.oggstr"
+
+[deps]
+
+source_file="res://sounds/qwak/qwak4.ogg"
+dest_files=[ "res://.import/qwak4.ogg-399a3dcd3b1fd15e07a9325b5baee1b8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
