@@ -73,8 +73,8 @@ func _on_end_dialogue():
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	randomize()
-#	menu()
-	next26()
+	menu()
+#	next26()
 
 # max 30 sec
 func sond(path: String):
@@ -113,17 +113,17 @@ func next0():
 	$Maison/In/Fish/AnimatedSprite.animation = "normal"
 	# print dialogue delay 2sec	
 	showDialogue([
-		["~~~", "In the tranquil valley of gymnopedia..."],
+		["~~~", "In the tranquil valley of gymnopedia...","other_fx/narrateur1.ogg"],
 	], 1, 0)
 
 func next0_1():
-	sond("tremblement faible2s.ogg")
+	sond("other_fx/tremblement faible2s.ogg")
 	$Camera.small_shake()
 	
 	showDialogue([
-		["~~~", "In the less tranquil valley of gymnopedia..."],
-		["You", "What the.... Why is my house so giggly all of a sudden ?"],
-		["You", "Wait ! No my flower pot !"]
+		["~~~", "In the less tranquil valley of gymnopedia...","other_fx/narrateur2.ogg"],
+		["You", "What the.... Why is my house so giggly all of a sudden ?","main/main1.ogg"],
+		["You", "Wait ! No my flower pot !","main/main2.ogg"]
 	], 2, 0.1)
 
 func next1():
@@ -158,8 +158,8 @@ func faild1():
 func next2():
 	$Player.anim($Player.ANIMATION_ANGRY)
 	showDialogue([
-		["You", "I got you ! No need to tremble anymore my pretty flower !"],
-		["You", "What’s going on ? "]
+		["You", "I got you ! No need to tremble anymore my pretty flower !","main/main3.ogg"],
+		["You", "What’s going on ? ","main/main4.ogg"]
 	], 1, 2)
 	$Player.setPosition($Player.positionFleur)
 
@@ -180,12 +180,12 @@ func next3():
 	$Player.setPosition($Player.positionFleur)
 	$Player.move($Player.positionInit, 4, 0.3)
 	showDialogue([
-		["You", "Wooohaaaaaat ???"],
-		["Deeper", "Hey little neighbah ! I’ve just installed mah cutie farm  next to yarr house ! Look how mah plant is growing  !"],
+		["You", "Wooohaaaaaat ???","main/main5.ogg"],
+		["Deeper", "Hey little neighbah ! I’ve just installed mah cutie farm  next to yarr house ! Look how mah plant is growing  !","deeper/deeper1.ogg"],
 		["You", "(I don’t think we talk about the same plants...)"],
-		["Deeper", "Yaaaa look at this little neighbah ! This baby can drill more than 3 miles deep !"],
-		["You", "I’m not sure it is a good idea to go deeper and deeper..."],
-		["Deeper", "Errr, Togethah, at Deeper Industries, we do not need to say dah theme in our dialogues to make a game linked with this yerr's theme !"],
+		["Deeper", "Yaaaa look at this little neighbah ! This baby can drill more than 3 miles deep !","deeper/deeper2.ogg"],
+		["You", "I’m not sure it is a good idea to go deeper and deeper...","main/main6.ogg"],
+		["Deeper", "Errr, Togethah, at Deeper Industries, we do not need to say dah theme in our dialogues to make a game linked with this yerr's theme !","deeper/deeper3.ogg"],
 		["You", "(I shall stop talking with this weirdo, this guy speaks nonsense.)"]
 
 	], 3, 3)
@@ -221,9 +221,9 @@ func next5():
 	$Maison/In/Trape/AnimatedSprite.animation = "close"
 	
 	showDialogue([
-		["You", "What a strange dream..."],
-		["You", "Nevermind, with all the mess Mr.DrillGuy is making, I shall find a solution to protect my flower."],
-		["You", "Let’s find my tools !"]
+		["You", "What a strange dream...","main/main7.ogg"],
+		["You", "Nevermind, with all the mess Mr.DrillGuy is making, I shall find a solution to protect my flower.","main/main8.ogg"],
+		["You", "Let’s find my tools !","main/main9.ogg"]
 	], 1, 5)
 
 # go cave
@@ -263,8 +263,8 @@ func next7():
 	$Maison/In/Trape/AnimatedSprite.animation = "open"
 	$Camera/Camera2D/ScreenShake.start(1, 2, 60, 2)
 	showDialogue([
-		["You", "Woah it’s pretty dark in here !"],
-		["You", "Okay let’s create the perfect fall proof flower pot"],
+		["You", "Woah it’s pretty dark in here !","main/main10.ogg"],
+		["You", "Okay let’s create the perfect fall proof flower pot","main/main11.ogg"],
 	], 1, 7)
 	
 
@@ -314,8 +314,8 @@ func next9():
 	$Maison/In/FlowerPot/AnimatedSprite.animation = "cage"
 	$Maison/In/Fish/AnimatedSprite.animation = "normal"
 	showDialogue([
-		["You", "Phew, that was quite the work ! Well yeah, I could have turned the light on, but it would have been less fun !"],
-		["You", "And here is the protectaflower 2000 ! With this, no more earthquake hazards !"],
+		["You", "Phew, that was quite the work ! Well yeah, I could have turned the light on, but it would have been less fun !","main/main12.ogg"],
+		["You", "And here is the protectaflower 2000 ! With this, no more earthquake hazards !","main/main13.ogg"],
 	], 1, 9)
 	
 # its work
@@ -323,8 +323,8 @@ func next10():
 	yield(get_tree().create_timer(1), "timeout")
 	$Camera.small_shake()
 	showDialogue([
-		["You", "It’s working ! "],
-		["You", "Rose are red, Violets are blue and nothing bad will happen to me and you !"],
+		["You", "It’s working ! ","main/main14.ogg"],
+		["You", "Rose are red, Violets are blue and nothing bad will happen to me and you !","main/main15.ogg"],
 	], 1, 10)
 	
 
@@ -336,22 +336,23 @@ func next11():
 	$Camera.reset()
 	$Player.setPosition($Player.positionCave)
 	$Player.anim($Player.ANIMATION_HAPPY)
-	# TODO crack sond
+	sond("other_fx/crac aquariumx3.ogg")
 	yield(get_tree().create_timer(1), "timeout")
 	$Player.anim($Player.ANIMATION_ANGRY)
 	print("crack")
 	showDialogue([
-		["You", "Cracks ? What do you mean cracks !?"],
+		["You", "Cracks ? What do you mean cracks !?","main/main16.ogg"],
 	], 2, 11)
 
 # crack again
 func next12():
 	yield(get_tree().create_timer(1), "timeout")
-	# TODO crack sond again
+	sond("other_fx/crac aquariumx3.ogg")
+	dynplayer.play()
 	print("crack")
 	$Maison/In/Fish/AnimatedSprite.animation = "fissure"
 	showDialogue([
-		["You", "Maurice the fish is in danger ! I have to help it ! That clearly is a flex tape situation."],
+		["You", "Maurice the fish is in danger ! I have to help it ! That clearly is a flex tape situation.","main/main17.ogg"],
 	], 2, 12)
 
 func next13():
@@ -387,8 +388,8 @@ func next14():
 	$Maison/In/Fish/AnimatedSprite.animation = "flextape"
 	$Player.anim($Player.ANIMATION_HAPPY)
 	showDialogue([
-		["You", "Good old flex tape... Can fix any situations... I guess ? "],
-		["You", "No it cannot fix my neighbor, but I can fix him."],
+		["You", "Good old flex tape... Can fix any situations... I guess ? ","main/main18.ogg"],
+		["You", "No it cannot fix my neighbor, but I can fix him.","main/main19.ogg"],
 	], 1, 14)
 
 func next15():
@@ -403,9 +404,10 @@ func next15():
 	$Player.setPosition($Player.positionFleur)
 	$Player.move($Player.positionInit, 3, 0.3)
 	showDialogue([
-		["You", "W-W--What ?? Another well already ? What the hell are you doing ! Can’t you see that you are creating trouble in the valley ?"],
-		["Deeper", "Ahah ! This earthquakes were already tharr, or not tharr exactly but in anothah plane of existence, it’s okay ! How in dah world making pretty tiny holes deep down could disrupt the geological balance ?"],
-		["You", "Wow you speak so smart. I am convinced. You have used great wisdom in your speech. I will go straight back home."],
+		["You", "W-W--What ?? Another well already ? What the hell are you doing ! Can’t you see that you are creating trouble in the valley ?","main/main20.ogg"],
+		["Deeper", "Ahah ! This earthquakes were already tharr, or not tharr exactly but in anothah plane of existence, it’s okay !","deeper/deeper4.ogg"] 
+		["Deeper", "How in dah world making pretty tiny holes deep down could disrupt the geological balance ?","deeper/deeper5.ogg"],
+		["You", "Wow you speak so smart. I am convinced. You have used great wisdom in your speech. I will go straight back home.","main/main21.ogg"],
 	], 3, 15)
 	yield(get_tree().create_timer(3.3), "timeout")
 	$Player.anim($Player.ANIMATION_ANGRY)
@@ -419,7 +421,7 @@ func next16():
 	$Maison/Out.hide()
 	$Player.hide()
 	showDialogue([
-		["???", "Quaaack, Quaaaack !"],
+		["???", "Quaaack, Quaaaack !","qwak/qwak9.ogg"],
 	], 2, 16)
 	
 func next17():
@@ -437,13 +439,13 @@ func next17():
 	$Camera.reset()
 	$Maison/In/Trape/AnimatedSprite.animation = "close"
 	showDialogue([
-		["You", "This weird dream again... This time, it was much more understandable... Yum"],
+		["You", "This weird dream again... This time, it was much more understandable...","main/main22.ogg"],
 	], 1, 17)
 
 func next18():
 	$Camera.small_shake()
 	showDialogue([
-		["You", "Wha... Again ! Oh no the shelf !"],
+		["You", "Wha... Again ! Oh no the shelf !","main/main23.ogg"],
 	], 2.5, 18)
 	next19NbQteLeft = 4
 
@@ -506,17 +508,17 @@ func next21():
 	$Player.setPosition($Player.positionFleur)
 	$Player.anim($Player.ANIMATION_ANGRY)
 	showDialogue([
-		["You", "Enough ! You have almost killed my flower, my fish and now my books !"],
-		["Deeper", "Books cannot die."],
-		["You", "You’re right… BUT ! Stop messing with the under..."],
-		["Deeper", "Wait a minute please, lemme push dah button !"],
-		["You", "A butt.."],
+		["You", "Enough ! You have almost killed my flower, my fish and now my books !","main/main23.ogg"],
+		["Deeper", "Books cannot die.","deeper/deeper6.ogg"],
+		["You", "You’re right… BUT ! Stop messing with the under...","main/main24.ogg"],
+		["Deeper", "Wait a minute please, lemme push dah button !","deeper/deeper7.ogg"],
+		["You", "A butt..","main/main25.ogg"],
 	], 1, 21)
 
 func next22():
 	$Camera/Camera2D/ScreenShake.start(2, 8, 100, 2)
 	showDialogue([
-		["You", "I knew it ! You were the one provoking them all from the beginning !"],
+		["You", "I knew it ! You were the one provoking them all from the beginning !","main/main26.ogg"],
 	], 3, 22)
 	next23NbQteLeft = 3
 	next23SideQte = true
@@ -569,8 +571,8 @@ func fail23():
 func next24():
 	$Player.anim($Player.ANIMATION_ANGRY)
 	showDialogue([
-		["You", "It was... Exhausting... I don’t feel so good... I was so close from dying… I should... go back to bed..."],
-		["Deeper", "Yaaar, have a good night little neighbah !"],
+		["You", "It was... Exhausting... I don’t feel so good... I was so close from dying… I should... go back to bed...","main/main27.ogg"],
+		["Deeper", "Yaaar, have a good night little neighbah !","deeper/deeper8.ogg"],
 	], 1, 24)
 
 # dream 3
@@ -582,24 +584,24 @@ func next25():
 	$Maison/Out.hide()
 	$Player.hide()
 	showDialogue([
-		["???", "Qwack !"],
-		["You", "You again !"],
-		["You", "Oh, I can see clearly now. What are… A Dodo ! You are a Dodo !"],
-		["???", "Qwack !"],
-		["You", "Deepar is your name ? That is a strange name..."],
-		["Deepar", "Qwack."],
-		["You", "Yeah it was mean sorry... But I don’t understand, why are you appearing in all my dreams ?"],
-		["Deepar", "Qwack ?"],
-		["You", "Yes i’m fine, I guess, i don’t understand your point here ?"],
-		["Deepar", "Qwack !"],
-		["You", "Deeper Industries are really frightening me yes, but what can I do ?"],
-		["Deepar", "Qwack Qwack !"],
-		["You", "This world will die someday... Why are you telling me this !"],
-		["Deepar", "Qwack."],
-		["You", "If I cannot live properly, why everyone should..."],
-		["Deepar", "QWACK !"],
+		["???", "Qwack !","qwak/qwak1.ogg"],
+		["You", "You again !","main/main28.ogg"],
+		["You", "Oh, I can see clearly now. What are… A Dodo ! You are a Dodo !","main/main29.ogg"],
+		["???", "Qwack !","qwak/qwak2.ogg"],
+		["You", "Deepar is your name ? That is a strange name...","main/main30.ogg"],
+		["Deepar", "Qwack.","qwak/qwak3.ogg"],
+		["You", "Yeah it was mean sorry... But I don’t understand, why are you appearing in all my dreams ?","main/main31.ogg"],
+		["Deepar", "Qwack ?","qwak/qwak4.ogg"],
+		["You", "Yes i’m fine, I guess, i don’t understand your point here ?","main/main32.ogg"],
+		["Deepar", "Qwack !","qwak/qwak5.ogg"],
+		["You", "Deeper Industries are really frightening me yes, but what can I do ?","main/main33.ogg"],
+		["Deepar", "Qwack Qwack !","qwak/qwak6.ogg"],
+		["You", "This world will die someday... Why are you telling me this !","main/main34.ogg"],
+		["Deepar", "Qwack.","qwak/qwak7.ogg"],
+		["You", "If I cannot live properly, why everyone should...","main/main35.ogg"],
+		["Deepar", "QWACK !","qwak/qwak8.ogg"],
 		["You", "YES !"],
-		["You", "I will end my suffer here you are right ! Let’s grab my fork and stop my neighbour ! He, and everyone will pay to make us suffer ! Let’s end this world !"],
+		["You", "I will end my suffer here you are right ! Let’s grab my fork and stop my neighbour ! He, and everyone will pay to make us suffer ! Let’s end this world !","main/main36.ogg"],
 	], 2, 25)
 
 func next26():
@@ -637,7 +639,7 @@ func next26():
 	$Player.setPosition($Player.positionFleur)
 	$Player.anim($Player.ANIMATION_ANGRY_FORK)
 	showDialogue([
-		["Deeper", "Wait, little neighbah ? What are you doing with this ? No ! You can’t throw this in the well... Stop it already !"],
+		["Deeper", "Wait, little neighbah ? What are you doing with this ? No ! You can’t throw this in the well... Stop it already !","deeper/deeper9.ogg"],
 	], 2, 26)
 
 func next27():
@@ -674,6 +676,7 @@ func on_qte_end_27(success):
 	$Earth.animation = "nuke"
 	yield(get_tree().create_timer(2), "timeout")
 	$Earth.animation = "crack"
+	sond(other_fx/pop.ogg)
 	yield(get_tree().create_timer(1.5), "timeout")
 	$Earth.animation = "split"
 	yield(get_tree().create_timer(2), "timeout")

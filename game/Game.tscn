@@ -30,14 +30,24 @@ animations = [ {
 "name": "menu",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "dream3",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "maison",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "dehors",
+"name": "dream2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "dream1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
@@ -50,24 +60,14 @@ animations = [ {
 "name": "dehors2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "dream1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "dream3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "dream2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "boom",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "dehors",
 "speed": 5.0
 } ]
 
@@ -91,14 +91,14 @@ animations = [ {
 "name": "normal",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "nuke",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "crack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "nuke",
 "speed": 5.0
 } ]
 
